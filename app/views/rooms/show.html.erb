@@ -1,0 +1,26 @@
+<% room_pictures = ["https://images.pexels.com/photos/14025904/pexels-photo-14025904.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", "https://images.pexels.com/photos/12119319/pexels-photo-12119319.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1","https://images.pexels.com/photos/14547139/pexels-photo-14547139.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", "https://images.pexels.com/photos/1329711/pexels-photo-1329711.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", "https://images.pexels.com/photos/6782567/pexels-photo-6782567.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", "https://images.pexels.com/photos/262048/pexels-photo-262048.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", "https://images.pexels.com/photos/2747901/pexels-photo-2747901.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", "https://images.pexels.com/photos/6480198/pexels-photo-6480198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", "https://images.pexels.com/photos/7018391/pexels-photo-7018391.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"] %>
+
+<% room_picture = room_pictures[@rooms.index(@room)] %>
+
+<div class="d-flex justify-content-around">
+  <div class="card-trip-show">
+        <%= image_tag(room_picture) %>
+    <div class="card-trip-infos-show">
+      <div>
+        <h2><%= @room.hotel.name %></h2>
+        <h3><%= @room.hotel.address %></h3>
+        <p>Chambre pour <%= @room.capacity %> personnes</p>
+      </div>
+      <h2 class="card-trip-pricing-show"><%= @room.price_per_night %>€ par nuit</h2>
+    </div>
+  </div>
+
+    <div class="form-show ">
+      <h1>Réserver cette chambre</h1>
+      <%= simple_form_for [@room, @booking] do |f|%>
+        <%= f.input :starts_at %>
+        <%= f.input :ends_at %>
+        <%= f.submit "Réserver!", class:"btn-flat" %>
+      <% end %>
+    </div>
+</div>
