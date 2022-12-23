@@ -4,6 +4,7 @@
   grid-gap: 40px;
   margin: 5vh 5vh;
   justify-items: center;
+  margin: 5vh 5vh 13vh;
 }
 
 // Smallest device
@@ -135,4 +136,8 @@
 
 #new_booking {
   width: 75%;
+}
+
+.booking_starts_at {
+  margin-bottom: 45px !important;
 }
