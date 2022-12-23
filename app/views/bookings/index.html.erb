@@ -1,0 +1,32 @@
+<% room_pictures = ["https://images.pexels.com/photos/14025904/pexels-photo-14025904.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", "https://images.pexels.com/photos/12119319/pexels-photo-12119319.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1","https://images.pexels.com/photos/14547139/pexels-photo-14547139.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", "https://images.pexels.com/photos/1329711/pexels-photo-1329711.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", "https://images.pexels.com/photos/6782567/pexels-photo-6782567.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", "https://images.pexels.com/photos/262048/pexels-photo-262048.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", "https://images.pexels.com/photos/2747901/pexels-photo-2747901.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", "https://images.pexels.com/photos/6480198/pexels-photo-6480198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", "https://images.pexels.com/photos/7018391/pexels-photo-7018391.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"] %>
+
+<%# <% room_picture = room_pictures[@rooms.index(booking.room)] %>
+
+<div class="container bookings">
+
+  <h1>Mes Réservations</h1>
+
+  <% if @bookings == [] %>
+    <p>Il n'y a pas encore de réservations</p>
+  <% else %>
+    <% @bookings.each do |booking| %>
+      <% room_picture = room_pictures[@rooms.index(booking.room)] %>
+      <div class="card-product">
+        <%= image_tag(room_picture) %>
+
+        <div class="d-flex infos_delete">
+          <div class="card-product-infos">
+            <h2> Chambre pour <%= booking.room.capacity %> personnes à l'hôtel <%= booking.room.hotel.name  %></h2>
+            <p>Réservée du <%= booking.starts_at.strftime("%b %d, %Y")  %> au <%= booking.ends_at.strftime("%b %d, %Y") %></p>
+          </div>
+
+          <div>
+            <%= link_to '<i class="fa-solid fa-trash"></i>'.html_safe, booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Etes-vous sûrs?"} %>
+          </div>
+
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+</div>

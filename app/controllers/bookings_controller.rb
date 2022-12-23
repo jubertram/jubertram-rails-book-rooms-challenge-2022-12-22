@@ -1,6 +1,11 @@
 class BookingsController < ApplicationController
   before_action :set_room, only: %i[new create]
 
+  def index
+    @bookings = current_user.bookings
+    @rooms = Room.all
+  end
+
   def new
     @room = Room.find(params[:room_id])
     @booking = Booking.new
@@ -18,6 +23,13 @@ class BookingsController < ApplicationController
     else
       render 'rooms/show', status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @booking = Booking.find(params[:id])
+
+    @booking.destroy
+    redirect_to bookings_path, status: :see_other
   end
 
   private
