@@ -2,6 +2,19 @@
   background-size: cover;
   background-position: center;
   padding: 150px 0;
+  height: 95vh;
+
+  .container{
+    display: flex;
+    flex-direction: column;
+    align-content: stretch;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .btn-flat{
+    margin-top: 4vh;
+  }
 }
 
 .banner h1 {

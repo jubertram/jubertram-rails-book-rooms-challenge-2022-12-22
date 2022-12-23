@@ -2,7 +2,7 @@
 
 <% room_picture = room_pictures[@rooms.index(@room)] %>
 
-<div class="d-flex justify-content-around">
+<div class="show-div">
   <div class="card-trip-show">
         <%= image_tag(room_picture) %>
     <div class="card-trip-infos-show">
@@ -15,11 +15,10 @@
     </div>
   </div>
 
-    <div class="form-show ">
-      <h1>Réserver cette chambre</h1>
+    <div class="form-show d-flex flex-column align-items-center justify-content-around">
       <%= simple_form_for [@room, @booking], data: { controller: 'flatpickr' } do |f|%>
-        <%= f.input :starts_at, as: :string, input_html: { data: { flatpickr_target: "startTime" } } %>
-        <%= f.input :ends_at, as: :string, input_html: { data: { flatpickr_target: "endTime" }, id: 'end_time' } %>
+        <%= f.input :starts_at, as: :string, label: "Arrivée", input_html: { data: { flatpickr_target: "startTime" } } %>
+        <%= f.input :ends_at, as: :string, label: "Départ", input_html: { data: { flatpickr_target: "endTime" }, id: 'end_time' } %>
         <%= f.submit "Réserver!", class:"btn-flat" %>
       <% end %>
     </div>
