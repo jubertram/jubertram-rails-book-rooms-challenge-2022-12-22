@@ -17,9 +17,9 @@
 
     <div class="form-show ">
       <h1>Réserver cette chambre</h1>
-      <%= simple_form_for [@room, @booking] do |f|%>
-        <%= f.input :starts_at %>
-        <%= f.input :ends_at %>
+      <%= simple_form_for [@room, @booking], data: { controller: 'flatpickr' } do |f|%>
+        <%= f.input :starts_at, as: :string, input_html: { data: { flatpickr_target: "startTime" } } %>
+        <%= f.input :ends_at, as: :string, input_html: { data: { flatpickr_target: "endTime" }, id: 'end_time' } %>
         <%= f.submit "Réserver!", class:"btn-flat" %>
       <% end %>
     </div>
